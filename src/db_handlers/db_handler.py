@@ -146,7 +146,7 @@ class DBHandler(ABC):
        chat_session_id: str,
        user: User,
        text: str = "",
-       label: FeedbackLabel = FeedbackLabel.NotSet,
+       label: FeedbackLabel = FeedbackLabel.NOT_SET,
    ):
        """
        Append user feedback to a chat session.
@@ -193,7 +193,7 @@ class DBHandler(ABC):
        message_id: str,
        user: User,
        text: str = "",
-       label: FeedbackLabel = FeedbackLabel.NotSet
+       label: FeedbackLabel = FeedbackLabel.NOT_SET
    ):
        """
        Add feedback to a message.
