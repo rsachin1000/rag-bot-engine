@@ -2,10 +2,10 @@
     "Host": "0.0.0.0",
     "Port": 8080,
     "OpenAI": {
-        "DefaulLLM": "gpt-3.5-turbo-0125",
+        "DefaultLLM": "gpt-3.5-turbo-0125",
         "DefaultEmbeddingsModel": "text-embedding-ada-002"
     },
-    "DBStore": "MongoDB",
+    "DbStore": "MongoDB",
     "MongoDB": {
         "DBName": "rag-engine",
         "Collections": {
@@ -26,6 +26,13 @@
             "MongoDB": {
                 "DBName": "db_docstore",
                 "Namespace": "index_store"
+            }
+        },
+        "VectorStore": {
+            "ChromaDB": {
+                "DirPath": "./chroma_store",
+                "DBName": "default_database",
+                "CollectionName": "chroma_coll1"
             }
         }
     }
