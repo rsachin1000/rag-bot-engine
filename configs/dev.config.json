@@ -1,0 +1,32 @@
+{
+    "Host": "0.0.0.0",
+    "Port": 8080,
+    "OpenAI": {
+        "DefaulLLM": "gpt-3.5-turbo-0125",
+        "DefaultEmbeddingsModel": "text-embedding-ada-002"
+    },
+    "DBStore": "MongoDB",
+    "MongoDB": {
+        "DBName": "rag-engine",
+        "Collections": {
+            "RagBots": "rag_bots",
+            "ChatSessions": "chat_sessions"
+        }
+    },
+    "LlamaIndex": {
+        "DocStoreType": "MongoDB",
+        "VectorStoreType": "ChromaDB",
+        "DocStore": {
+            "MongoDB": {
+                "DBName": "db_docstore",
+                "Namespace": "docstore"
+            }
+        },
+        "IndexStore": {
+            "MongoDB": {
+                "DBName": "db_docstore",
+                "Namespace": "index_store"
+            }
+        }
+    }
+}

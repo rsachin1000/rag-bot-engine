@@ -1,0 +1,17 @@
+fastapi
+pydantic
+llama-index
+llama-index-llms-openai
+llama-index-readers-github
+llama-index-embeddings-openai
+llama-index-vector-stores-chroma
+llama-index-storage-docstore-mongodb
+llama-index-storage-index-store-mongodb
+llama-index-readers-web
+llama-index-readers-confluence
+atlassian-python-api
+requests
+pymongo
+chromadb
+uvicorn
+GitPython
