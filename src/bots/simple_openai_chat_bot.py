@@ -14,11 +14,16 @@ from llama_index.core.vector_stores import MetadataFilter, MetadataFilters
 from llama_index.core.vector_stores import FilterOperator, FilterCondition
 from llama_index.core.indices import load_index_from_storage, VectorStoreIndex
 
-from src.db_handlers.schemas import ConfluenceResource, CrawlResource, RagBot, GithubRepoResource, BotIndex, WebResource
+from src.db_handlers.schemas import (
+    ConfluenceResource, 
+    CrawlResource, 
+    RagBot, 
+    GithubResource, 
+    BotIndex
+)
 from src.bots.chat_bot import ChatBot
 from src.doc_readers.confluence_reader.confluence_reader import ConfluencePageReader
 from src.doc_readers.github_reader.github_reader import GithubReader
-from src.doc_readers.web_page_reader import WebPageReader
 from src.logger import CustomLogger
 from src.tools import StandardRetrieverQueryEngineTool
 from src.bots.utils import create_unique_id
@@ -76,13 +81,12 @@ class SimpleOpenAIChatBot(ChatBot):
        if not self._resource_to_index_map:
            github_reader = GithubReader()
            confluence_page_reader = ConfluencePageReader()
-           web_page_reader = WebPageReader()
           
            for resource in self.crawl_resources:
                _index_id = create_unique_id()
                documents=None
                nodes=None
-               if isinstance(resource, GithubRepoResource):
+               if isinstance(resource, GithubResource):
                    documents = await github_reader.read_documents(
                        resource=resource, chatbot_id=self.bot_id, verbose=False
                    )
@@ -106,18 +110,6 @@ class SimpleOpenAIChatBot(ChatBot):
                    nodes = confluence_page_reader.parse_documents(documents=documents)
                    logger.info(
                        message="read and parse documents from confluence",
-                       fields={"bot_id": self.bot_id},
-                   )
-               elif isinstance(resource, WebResource):
-                   documents = web_page_reader.read_documents(resource=resource, chatbot_id=self.bot_id, verbose=False)
-                  
-                   # set index_id metadata field for each document
-                   for doc in documents:
-                       doc.metadata[DOC_INDEX_ID_METADATA_KEY] = _index_id
-                  
-                   nodes=web_page_reader.parse_documents(documents=documents)
-                   logger.info(
-                       message="read and parse documents from web",
                        fields={"bot_id": self.bot_id},
                    )
                else:

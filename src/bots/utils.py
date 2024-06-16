@@ -1,6 +1,6 @@
 import uuid
 
 
-def create_unqiue_id() -> str:
+def create_unique_id() -> str:
     return str(uuid.uuid4())
 

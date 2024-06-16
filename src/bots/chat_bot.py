@@ -12,7 +12,7 @@ from llama_index.core.chat_engine.types import (
 )
 from llama_index.core.base.llms.types import ChatMessage
 
-from src.db_handlers.schemas import CrawlResource, RagBot, GithubRepoResource, BotIndex
+from src.db_handlers.schemas import CrawlResource, RagBot, BotIndex
 
 
 class ChatBot(ABC):
